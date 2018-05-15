@@ -24,7 +24,7 @@ class Prerender {
 
         return [
             new HtmlWebpackPlugin({
-                template: this.template,
+                template: Config.publicPath,
                 inject: false,
             }),
 

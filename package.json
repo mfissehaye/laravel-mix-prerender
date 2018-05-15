@@ -1,6 +1,6 @@
 {
   "name": "laravel-mix-prerender",
-  "version": "0.1.0-rc.2",
+  "version": "0.1.0-rc.3",
   "description": "Laravel mix extension to enable prerendering for laravel",
   "main": "index.js",
   "scripts": {

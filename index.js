@@ -18,18 +18,18 @@ class Prerender {
         this.template = template
     }
 
-    webpackPlugins() {
+    webpackConfig(webpackConfig) {
         let HtmlWebpackPlugin = require('html-webpack-plugin');
         let PrerenderSpaPlugin = require('prerender-spa-plugin');
-
-        return [
+        let CopyWebpackPlugin = require('copy-webpack-plugin');
+        webpackConfig.plugins.push(
             new HtmlWebpackPlugin({
-                template: Config.publicPath,
+                template: this.template,
                 inject: false,
             }),
 
             new PrerenderSpaPlugin({
-                staticDir: path.resolve(__dirname, Config.publicPath),
+                staticDir: webpackConfig.output.path,
                 routes: this.routes,
                 postProcess: (renderedRoute) => {
                     
@@ -39,7 +39,6 @@ class Prerender {
                     let route = renderedRoute.route.replace('/', '')
                     if(!route) route = 'index'
                     renderedRoute.outputPath = path.resolve(
-                        __dirname,
                         path.dirname(this.template),
                         'rendered', 
                         route + '.blade.php'
@@ -47,7 +46,8 @@ class Prerender {
                     return renderedRoute;
                 }
             }),
-        ]
+        )
+
     }
 }
 

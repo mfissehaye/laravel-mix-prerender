@@ -21,7 +21,6 @@ class Prerender {
     webpackConfig(webpackConfig) {
         let HtmlWebpackPlugin = require('html-webpack-plugin');
         let PrerenderSpaPlugin = require('prerender-spa-plugin');
-        let CopyWebpackPlugin = require('copy-webpack-plugin');
         webpackConfig.plugins.push(
             new HtmlWebpackPlugin({
                 template: this.template,

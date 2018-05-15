@@ -1,0 +1,25 @@
+{
+  "name": "laravel-mix-prerender",
+  "version": "0.1.0",
+  "description": "Laravel mix extension to enable prerendering for laravel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfissehaye/laravel-mix-prerender.git"
+  },
+  "keywords": [
+    "laravel",
+    "laravel",
+    "mix",
+    "prerender"
+  ],
+  "author": "Merhawi Fissehaye <merhawifissehaye@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mfissehaye/laravel-mix-prerender/issues"
+  },
+  "homepage": "https://github.com/mfissehaye/laravel-mix-prerender#readme"
+}

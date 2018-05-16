@@ -11,14 +11,18 @@ class Prerender {
         ]
     }
 
-    register({routes, template}) {
+    register({routes, template, transform}) {
         if(!routes) routes = ['/']
         if(!template) template = 'resources/views/welcome.blade.php'
+        if(!transform) transform = () => {}
         this.routes = routes
         this.template = template
+        this.transform = transform
     }
 
     webpackConfig(webpackConfig) {
+        console.log(path.dirname(this.template),
+        'rendered')
         let HtmlWebpackPlugin = require('html-webpack-plugin');
         let PrerenderSpaPlugin = require('prerender-spa-plugin');
         webpackConfig.plugins.push(
@@ -32,8 +36,7 @@ class Prerender {
                 routes: this.routes,
                 postProcess: (renderedRoute) => {
                     
-                    renderedRoute.html = renderedRoute.html.replace("<div id=\"app\"", "<div id=\"app\" server-rendered=\"true\"")
-                    renderedRoute.html = renderedRoute.html.replace("<script>window.__SERVER__=true<script>", "<script>window.__SERVER__=false<script>")
+                    renderedRoute.html = this.transform(renderedRoute.html)
 
                     let route = renderedRoute.route.replace('/', '')
                     if(!route) route = 'index'
